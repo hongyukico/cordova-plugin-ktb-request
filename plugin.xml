@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-ktb-request" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>RequestPlugin</name>
+    <js-module name="RequestPlugin" src="www/RequestPlugin.js">
+        <clobbers target="cordova.plugins.RequestPlugin" />
+    </js-module>
+    <!-- iOS -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="RequestPlugin">
+                <param name="ios-package" value="CDVRequestPlugin" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/CDVRequestPlugin.h" />
+        <source-file src="src/ios/CDVRequestPlugin.m" />
+    </platform>
+		<platform name="android">
+	    <config-file target="res/xml/config.xml" parent="/*">
+			<feature name="RequestPlugin">
+			   <param name="android-package" value="com.ktb.plugin.RequestPlugin" />
+			</feature>
+		</config-file>
+			<!-- Gradle config -->
+		<framework custom="true" src="src/android/request.gradle" type="gradleReference"/>
+		<source-file src="src/android/OkHttpUtil.java" target-dir="src/com/ktb/plugin/util" />
+		<source-file src="src/android/RequestPlugin.java" target-dir="src/com/ktb/plugin" />
+	</platform>
+
+</plugin>
