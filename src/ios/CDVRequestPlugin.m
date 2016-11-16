@@ -22,10 +22,15 @@
         NSDictionary *dict = command.arguments[0];
         NSString *url = dict[@"url"];
         NSDictionary *params = dict[@"params"];
+        
         [requestOperation AFAddPostDressname:url parmas:params RequestSuccess:^(id result) {
             
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:result options:NSJSONWritingPrettyPrinted error:nil];
+            NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                         messageAsDictionary:result];
+                                             messageAsString:jsonString];
+            
             [self.commandDelegate sendPluginResult:pluginResult
                                         callbackId:command.callbackId];
         } failBlcok:^(id error) {
@@ -42,7 +47,7 @@
  {"url":"xxxxx"}
  */
 - (void)getRequest:(CDVInvokedUrlCommand *)command {
-   
+    
     [self.commandDelegate runInBackground:^{
         __block CDVPluginResult *pluginResult = nil;
         
@@ -51,8 +56,11 @@
                                      parmas:nil
                              RequestSuccess:^(id result)
          {
+             NSData *jsonData = [NSJSONSerialization dataWithJSONObject:result options:NSJSONWritingPrettyPrinted error:nil];
+             NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+             
              pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                          messageAsDictionary:result];
+                                              messageAsString:jsonString];
              [self.commandDelegate sendPluginResult:pluginResult
                                          callbackId:command.callbackId];
          } failBlcok:^(id error) {
@@ -73,9 +81,14 @@
         NSDictionary *dict = command.arguments[0];
         NSString *url = dict[@"url"];
         NSDictionary *params = dict[@"params"];
+        
         [requestOperation AFAddPutDressname:url paramas:params RequestSuccess:^(id result) {
+            
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:result options:NSJSONWritingPrettyPrinted error:nil];
+            NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                         messageAsDictionary:result];
+                                             messageAsString:jsonString];
             [self.commandDelegate sendPluginResult:pluginResult
                                         callbackId:command.callbackId];
         } failBlcok:^(id error) {
@@ -85,7 +98,7 @@
                                         callbackId:command.callbackId];
         }];
     }];
-  
+    
 }
 
 
@@ -103,8 +116,12 @@
                                     paramas:urlStr
                              RequestSuccess:^(id result)
          {
+             NSData *jsonData = [NSJSONSerialization dataWithJSONObject:result options:NSJSONWritingPrettyPrinted error:nil];
+             NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+             
              pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                          messageAsDictionary:result];
+                                              messageAsString:jsonString];
+             
              [self.commandDelegate sendPluginResult:pluginResult
                                          callbackId:command.callbackId];
          } failBlcok:^(id error) {

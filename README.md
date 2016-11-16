@@ -1,6 +1,6 @@
 # Cordova request plugin
 
-for iOS and Android, by [ktb](https://github.com/hongyukico)
+for iOS and Android, by ktb
 
 ## Description
 网页进行数据请求时，通过原生请求。返回给网页成功、失败的回调并返回相对应的数据，支持android、ios平台
